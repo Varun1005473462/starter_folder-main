@@ -18,28 +18,28 @@ library(tidyr)
 library(reprex)
 
 
-## data download from https://open.toronto.ca/dataset/covid-19-cases-in-toronto/
+## data download from https://open.toronto.ca/dataset/police-annual-statistical-report-shooting-occurrences/
 
 
 # Datasets are grouped into packages that have multiple datasets
 ## relevant to that topic. So we first look at the package
 ## using a unique key that we obtain from dataset webpage
 # get package
-package <- show_package("64b54586-6180-4485-83eb-81e8fae3b8fe")
+package <- show_package("f29feb49-ceb1-44bf-a2b6-5fc6a0e6147a")
 package
 
 # get all resources for this package
-resources <- list_package_resources("64b54586-6180-4485-83eb-81e8fae3b8fe")
+resources <- list_package_resources("f29feb49-ceb1-44bf-a2b6-5fc6a0e6147a")
 
 
 # We need the unique key from that list of resources
 
 
-covid_cases <- resources %>% get_resource()
-covid_cases
+shooting_occurences <- resources %>% get_resource()
+shooting_occurences
 
 ### Saving data ###
-write_csv(covid_cases,'inputs/data/covid_cases.csv')
+write_csv(shooting_occurences,'inputs/data/shooting_occurences.csv')
 
 
 
