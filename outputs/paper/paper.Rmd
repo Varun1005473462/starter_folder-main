@@ -55,9 +55,10 @@ Our dataset is of shooting occurrences in Toronto
 
 I was interested in the relationship between the current year and the number of shooting occurrences that took place in said year because it was a measure of how effective gun control policies are in Toronto from year to year. I was also interested in how these shooting occurrences were split among the geographical divisions for each year included in the dataset.
 
-Figure 1 shows the relationship between year and shooting occurrences and figure 2 shows how the geographical division of the shooting occurrences for each year.
+Figure \@ref(fig:bar plot 1) shows the relationship between year and shooting occurrences. 
 
-```{r, echo=FALSE}
+
+```{r bar plot 1, echo=FALSE}
 shooting_barplot <- 
   shooting_occurences %>% 
   mutate(Year = 
@@ -82,7 +83,12 @@ shooting_barplot %>%
   ggplot(mapping = aes(x=OccurredYear,y=Count_)) +
   geom_bar(stat='identity')+
   labs(title='Figure 1')
+```
 
+
+Figure \@ref(fig:bar plot 2) shows how the geographical division of the shooting occurrences for each year.
+
+```{r bar plot 2, echo=FALSE}
 shooting_barplot %>%  
   ggplot(mapping = aes(OccurredYear,Count_, fill=GeoDivision)) +
   geom_bar(stat='identity',position='dodge')+
