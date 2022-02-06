@@ -1,11 +1,10 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Shooting Occurrences in Toronto"
 author: 
-  "Varun Vijay"
-thanks: "Code and data are available at: LINK."
+  - Varun Vijay
+thanks: "Code and data are available at: https://github.com/Varun1005473462/starter_folder-main."
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "Statistics about shooting occurrences are a very important statistic to consider in Toronto as gun violence is a very serious problem in the modern world. I obtained and analyed yearly data from 2014 to 2019 about shooting occurences that were reported in Toronto from the city on a geographic basis. I found a mostly increasing trend in shooting occurences for Toronto from 2014 to 2019 and a close correlation between year and number of shooting occurences in the year. My findings have serious implications for the crime rate and the effectiveness of gun control in Toronto "
 output:
   bookdown::pdf_document2
 toc: FALSE
@@ -14,62 +13,137 @@ bibliography: references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
-library(tidyverse)
-library(palmerpenguins)
 ```
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+First paragraph is going to be motivational and broad based on the first sentence of abstract.
+
+Second paragraph is about what was done and what was found. 
+
+Third paragraph about implications
+
+The remainder of this paper is: Section \@ref(data) explains data. Section \@ref(results) explains results, etc..... 
 
 
 
 # Data
 
-Our data is of penguins (Figure \@ref(fig:bills)).
+Paragraph or two introducing the dataset broadly. 
 
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+then show an extract of dataset (Table \@ref(tab:dataextract))
+
+```{r dataextract, echo=FALSE}
+library(tidyverse)
+library(knitr)
+shooting_occurences<-
+  read_csv(here::here("inputs/data/shooting_occurences.csv"))
+shooting_occurences %>% 
+  select(OccurredYear,GeoDivision,Category, Count_) %>%
+  slice(1:10) %>%
+  kable(
+    caption = "Table 1: First ten rows of a dataset that shows shooting Occurences in Toronto",
+    col.names=c('Occured Year','Geo Division','Category','Count'),
+    digits=1,
+    booktabs=TRUE,
+    linesep="")
 ```
+
+Paragraph or two more about the Table \@ref(tab:dataextract)
+
+Our dataset is of shooting occurrences in Toronto
+
+I was interested in the relationship between the current year and the number of shooting occurrences that took place in said year because it was a measure of how effective gun control policies are in Toronto from year to year. I was also interested in how these shooting occurrences were split among the geographical divisions for each year included in the dataset.
+
+Figure 1 shows the relationship between year and shooting occurrences and figure 2 shows how the geographical division of the shooting occurrences for each year.
+
+```{r, echo=FALSE}
+shooting_barplot <- 
+  shooting_occurences %>% 
+  mutate(Year = 
+           case_when(OccurredYear==2014 ~ "2014",
+                     OccurredYear==2015 ~ "2015",
+                     OccurredYear==2016 ~ "2016",
+                     OccurredYear==2017 ~ "2017",
+                     OccurredYear==2018 ~ "2018",
+                     OccurredYear==2019 ~ "2019",
+                     ),
+         Year = factor(Year,
+                            levels = c("2014",
+                                       "2015",
+                                       "2016",
+                                       "2017",
+                                       "2018",
+                                       "2019"
+                                       )
+                            )
+         )
+shooting_barplot %>%  
+  ggplot(mapping = aes(x=OccurredYear,y=Count_)) +
+  geom_bar(stat='identity')+
+  labs(title='Figure 1')
+
+shooting_barplot %>%  
+  ggplot(mapping = aes(OccurredYear,Count_, fill=GeoDivision)) +
+  geom_bar(stat='identity',position='dodge')+
+  labs(title='Figure 2')
+
+```
+
+
 
 Talk more about it.
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
 
-```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
 
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+Condensing the data to find the maximum shooting occurences for each year
+```{r, echo=FALSE}
+shooting_occurences_2014<-shooting_occurences %>%
+  filter(OccurredYear==2014)
+count_2014<-sum(shooting_occurences_2014$Count_)
+shooting_occurences_2015<-shooting_occurences %>%
+  filter(OccurredYear==2015)
+count_2015<-sum(shooting_occurences_2015$Count_)
+shooting_occurences_2016<-shooting_occurences %>%
+  filter(OccurredYear==2016)
+count_2016<-sum(shooting_occurences_2016$Count_)
+shooting_occurences_2017<-shooting_occurences %>%
+  filter(OccurredYear==2017)
+count_2017<-sum(shooting_occurences_2017$Count_)
+shooting_occurences_2018<-shooting_occurences %>%
+  filter(OccurredYear==2018)
+count_2018<-sum(shooting_occurences_2018$Count_)
+shooting_occurences_2019<-shooting_occurences %>%
+  filter(OccurredYear==2019)
+count_2019<-sum(shooting_occurences_2019$Count_)
+Year<-c(2014,2015,2016,2017,2018,2019)
+Shooting_count<-c(count_2014,count_2015,count_2016,count_2017,count_2018,count_2019)
+shooting_occurences_year<-data.frame(Year,Shooting_count)
+shooting_occurences_year
 ```
 
+
+```{r, echo =FALSE}
+library(modelsummary)
+shooting_occurences_year %>%
+  datasummary_skim()
+```
+
+```{r, echo =FALSE}
+shooting_occurences_year %>%
+  ggplot(mapping = aes(x = Year, y = Shooting_count)) +
+  geom_point()+
+  labs(title="Relationship between year and shooting occurences in that year")
+```
+
+
+```{r, echo=FALSE}
+shooting_occurences_year %>%
+  datasummary_correlation()
+```
+
+
 Talk way more about it. 
-
-
-
-# Model
-
-\begin{equation}
-Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
-\end{equation}
-
-Equation \@ref(eq:bayes) seems useful, eh?
-
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @thereferencecanbewhatever If we were interested in baseball data then @citeLahman could be useful. 
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
 
 
 # Results
