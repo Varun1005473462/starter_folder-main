@@ -8,4 +8,8 @@ More information on the dataset can be found on the Toronto Police Service Publi
 
 The CSV file containing the dataset can be found in /inputs/data
 The R script showing the code used to download the dataset can be found in /scripts
+<<<<<<< HEAD
 R markdown, references, and the final pdf can be found in /outputs/paper
+=======
+R markdown, references, and the final pdf can be found in /outputs/paper
+>>>>>>> aa11f7cd6267bd984317b355ababe577c958af94
