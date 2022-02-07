@@ -39,7 +39,7 @@ shooting_occurences <- resources %>% get_resource()
 shooting_occurences
 
 ### Saving data ###
-write_csv(shooting_occurences,'inputs/data/shooting_occurences.csv')
+write_csv(shooting_occurences,'inputs/data/shooting_occurrences.csv')
 
 
 
