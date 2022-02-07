@@ -4,7 +4,6 @@ author: "Varun Vijay"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
-    citation_package: biblatex
     extra_dependencies: ["float"]
 abstract: Gun violence is a very serious problem in the modern world so statistics
   about shooting occurrences are an important factor to consider. This paper analyzed
@@ -17,6 +16,7 @@ abstract: Gun violence is a very serious problem in the modern world so statisti
 thanks: 'Code and data are available at: https://github.com/Varun1005473462/starter_folder-main.'
 toc: no
 bibliography: references.bib
+always_allow_html: yes
 ---
 
 
