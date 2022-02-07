@@ -16,17 +16,14 @@ abstract: Gun violence is a very serious problem in the modern world so statisti
 thanks: 'Code and data are available at: https://github.com/Varun1005473462/starter_folder-main.'
 toc: no
 bibliography: references.bib
-always_allow_html: yes
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-library(knitr)
 library(modelsummary)
 library(readr)
-knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
