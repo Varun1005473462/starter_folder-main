@@ -174,9 +174,7 @@ Table 3 (Table \@ref(tab:dataskim)) shows the summary statistics such as mean, m
 
 ```{r dataskim, echo =FALSE}
 shooting_occurrences_year$Shooting_count %>%
-  datasummary_skim() %>%
-  knitr::kable(
-    caption = "Table 3: summary statistics for shooting_occurrences")
+  datasummary_skim(title ="Table 3: summary statistics for shooting_occurrences") 
 ```
 
 
@@ -186,9 +184,7 @@ Table 4 (Table \@ref(tab:datacorrelation) )shows the correlation between year an
 
 ```{r datacorrelation, echo=FALSE}
 shooting_occurrences_year %>%
-  datasummary_correlation() %>%
-  knitr::kable(
-    caption = "Table 4: correlation between year and shooting occurrences reported in that year")
+  datasummary_correlation(title = "Table 4: correlation between year and shooting occurrences reported in that year") 
 ```
 
 Table 3 (Table \@ref(tab:datacorrelation)) shows that there is a very close correlation between year and reported shooting_occurrences in that year. 
