@@ -3,7 +3,8 @@ title: "The increasing trend of shooting occurrences in Toronto"
 author: "Varun Vijay"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  bookdown::pdf_document2:
+  pdf_document:
+    extra_dependencies: ["float"]
 abstract: Gun violence is a very serious problem in the modern world so statistics
   about shooting occurrences are an important factor to consider. This paper analyzed
   yearly data about shooting occurrences that were reported in Toronto in different
@@ -11,7 +12,7 @@ abstract: Gun violence is a very serious problem in the modern world so statisti
   was a  mostly increasing trend in shooting occurrences in Toronto from 2014 to 2019
   and a close correlation between current year and the number of shooting occurrences
   in the year. The findings in this paper have serious implications for the crime
-  rate and the effectiveness of gun control in Toronto
+  rate and the effectiveness of gun control in Toronto.
 thanks: 'Code and data are available at: https://github.com/Varun1005473462/starter_folder-main.'
 toc: no
 bibliography: references.bib
