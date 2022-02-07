@@ -2,7 +2,8 @@
 title: "The increasing trend of shooting occurrences in Toronto"
 author: "Varun Vijay"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-output: pdf_document
+output:
+  bookdown::pdf_document2:
 abstract: Gun violence is a very serious problem in the modern world so statistics
   about shooting occurrences are an important factor to consider. This paper analyzed
   yearly data about shooting occurrences that were reported in Toronto in different
@@ -63,7 +64,7 @@ shooting_occurrences<-
 shooting_occurrences %>% 
   select(OccurredYear,GeoDivision, Count_) %>%
   slice(1:10) %>%
-  kable(
+  knitr::kable(
     caption = "Table 1: First ten rows of a dataset that shows shooting occurrences in Toronto",
     col.names=c('Occured Year','Geo Division','Count'),
     digits=1,
@@ -82,7 +83,7 @@ The relationship between the current year and the number of shooting occurrences
 Figure \@ref(fig:bar plot 1) shows the relationship between year and shooting occurrences. 
 
 
-```{r bar plot 1, echo=FALSE}
+```{r bar plot 1, fig.cap="Number of shooting occurrences from 2014 to 2019", echo=FALSE}
 shooting_barplot <- 
   shooting_occurrences %>% 
   mutate(Year = 
@@ -106,8 +107,7 @@ shooting_barplot <-
 shooting_barplot %>%  
   ggplot(mapping = aes(x=Year,y=Count_)) +
   geom_bar(stat='identity')+
-  labs(title='Figure 1',
-       x="Year",
+  labs(x="Year",
        y="Shooting occurrences") ## using stat=identity to have include
 ## and y variable for the bar plot
 ```
@@ -117,14 +117,13 @@ From Figure \@ref(fig:bar plot 1), there appears to be a mostly increasing trend
 
 Showing how shooting occurrences in each year were aggregated by the geographical division it took place in is also a useful thing to show as it shows us which division had the highest amount of reported shooting occurrences and could be interpreted as that division having the highest crime rate.
 
-Figure \@ref(fig:bar plot 2) shows how the geographical division of the shooting occurrences for each year.
+Figure \@ref(fig:bar plot 2) shows shooting occurrences for each year agreggated by geographical division.
 
-```{r bar plot 2, echo=FALSE}
+```{r bar plot 2,fig.cap="Number of shooting occurrences from 2014 to 2019 agrregated by geographical division", echo=FALSE}
 shooting_barplot %>%  
   ggplot(mapping = aes(Year,Count_, fill=GeoDivision)) +
   geom_bar(stat='identity',position='dodge')+
-  labs(title='Figure 2',
-       x="Year",
+  labs(x="Year",
        y="Shooting count") ## showing how shooting occurrences
 ## split among the geographical divisions using fill
 ```
@@ -158,7 +157,9 @@ count_2019<-sum(shooting_occurrences_2019$Count_)
 Year<-c(2014,2015,2016,2017,2018,2019)
 Shooting_count<-c(count_2014,count_2015,count_2016,count_2017,count_2018,count_2019)
 shooting_occurrences_year<-data.frame(Year,Shooting_count)
-shooting_occurrences_year
+shooting_occurrences_year %>%
+  knitr::kable(
+    caption = "Table 2: Dataset showing shooting count for each year from 2014 to 2019")
 ```
 
 From the Table \@ref(tab:datayear), it can be observed that shooting occurrences have been increasing from 2014 to 2019 with a slight decrease in 2017. From 2017, there have only been slight increases in reported shooting occurrences but there has been no decrease in shooting occurrences over the years shown in the dataset. This table reinforces the earlier theory that gun laws have become less effective since 2014 in Toronto and that more serious measures should have been implemented in these years.
@@ -189,15 +190,17 @@ Table \@ref(tab:datacorrelation) shows that there is a very close correlation be
 
 Figure \@ref(fig:scatterplot) shows us the relationship between year and shooting occurrences in a scatterplot.
 
-```{r scatterplot, echo =FALSE}
+```{r scatterplot,fig.cap="Relationship between year and shooting occurrences" ,echo =FALSE}
 shooting_occurrences_year %>%
   ggplot(mapping = aes(x = Year, y = Shooting_count)) +
-  geom_point()+
-  labs(title="Relationship between year and shooting occurrences")
+  geom_point()
 ```
 
 Figure \@ref(fig:scatterplot) shows that there is something closely resembling a linear relationship between year and shooting occurrences in that year. 
 
+## Packages
+
+The packages used for this paper were tidyverse, modelsummary, knitr, opendatatoronto, dplyr, and readr. Some of these packages such as opendatatoronto and dplyr were used to upload the dataset used for this project. Others were used for the various plots and tables included in this paper. 
 
 # References
 

@@ -13,9 +13,6 @@ library(opendatatoronto)
 library(tidyverse)
 library(dplyr)
 library(knitr)
-library(janitor)
-library(tidyr)
-library(reprex)
 
 
 ## data download from https://open.toronto.ca/dataset/police-annual-statistical-report-shooting-occurrences/
