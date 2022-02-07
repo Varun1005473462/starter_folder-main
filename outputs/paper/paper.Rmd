@@ -4,12 +4,21 @@ author: "Varun Vijay"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
+    citation_package: biblatex
     extra_dependencies: ["float"]
-abstract: Gun violence is a very serious problem in the modern world so statistics about shooting occurrences are an important factor to consider. This paper analyzed yearly data about shooting occurrences that were reported in Toronto in different geographic divisions of the city from 2014 to 2019. The analysis showed that there was a  mostly increasing trend in shooting occurrences in Toronto from 2014 to 2019 and a close correlation between current year and the number of shooting occurrences in the year. The findings in this paper have serious implications for the crime rate and the effectiveness of gun control in Toronto.
+abstract: Gun violence is a very serious problem in the modern world so statistics
+  about shooting occurrences are an important factor to consider. This paper analyzed
+  yearly data about shooting occurrences that were reported in Toronto in different
+  geographic divisions of the city from 2014 to 2019. The analysis showed that there
+  was a  mostly increasing trend in shooting occurrences in Toronto from 2014 to 2019
+  and a close correlation between current year and the number of shooting occurrences
+  in the year. The findings in this paper have serious implications for the crime
+  rate and the effectiveness of gun control in Toronto.
 thanks: 'Code and data are available at: https://github.com/Varun1005473462/starter_folder-main.'
 toc: no
 bibliography: references.bib
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -17,6 +26,7 @@ library(tidyverse)
 library(knitr)
 library(modelsummary)
 library(readr)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 ```
 
 # Introduction
@@ -48,6 +58,7 @@ While this dataset contains all reported shooting occurrences in Toronto, it doe
 The shooting occurrences dataset contains all shooting occurrences reported to the Toronto Police Service from 2014 to 2019 aggregated by division. There are 96 observations and 6 variables. These variables are _id, _index, OccurredYear, GeoDivision (Geographic division crime took place), Category (Shooting category) and Count_(Total number of shooting occurrences reported). The first two _id and _index are the same and were removed prior analysis. Category was also removed because all of the occurrences were the same category, Shooting occurrence, and thus it had no impact on the analysis of the dataset. Shooting occurrences in each year were aggregated by the geographical division they took place in. A sample view of the dataset can be viewed here.
 
 Extract of dataset (Table \@ref(tab:dataextract))
+
 
 ```{r dataextract, echo=FALSE}
 options(readr.show_col_types = FALSE)
@@ -113,6 +124,7 @@ Showing how shooting occurrences in each year were aggregated by the geographica
 
 Figure \@ref(fig:bar plot 2) shows shooting occurrences for each year agreggated by geographical division.
 
+
 ```{r bar plot 2,fig.cap="Number of shooting occurrences from 2014 to 2019 agrregated by geographical division", echo=FALSE}
 shooting_barplot %>%  
   ggplot(mapping = aes(Year,Count_, fill=GeoDivision)) +
@@ -128,6 +140,7 @@ From Figure \@ref(fig:bar plot 2), it can be observed that division D31 had the 
 ## Summary statistics about the dataset
 
 Table \@ref(tab:datayear) shows the maximum number of shooting occurrences that occurred for each year
+
 
 ```{r datayear, echo=FALSE}
 shooting_occurrences_2014<-shooting_occurrences %>%
@@ -161,6 +174,7 @@ From the Table \@ref(tab:datayear), it can be observed that shooting occurrences
 
 Table \@ref(tab:dataskim) shows the summary statistics such as mean, minimum, maximum and median for shooting_occurrences.
 
+
 ```{r dataskim, echo =FALSE}
 shooting_occurrences_year$Shooting_count %>%
   datasummary_skim()
@@ -170,10 +184,9 @@ shooting_occurrences_year$Shooting_count %>%
 
 Table \@ref(tab:datacorrelation) shows the correlation between year and shooting occurrences reported in that year. 
 
+
 ```{r datacorrelation, echo=FALSE}
 shooting_occurrences_year %>%
-  datasummary_correlation()
-shooting_occurrences %>%
   datasummary_correlation()
 ```
 
@@ -183,6 +196,7 @@ Table \@ref(tab:datacorrelation) shows that there is a very close correlation be
 ## Scatterplot about the dataset 
 
 Figure \@ref(fig:scatterplot) shows us the relationship between year and shooting occurrences in a scatterplot.
+
 
 ```{r scatterplot,fig.cap="Relationship between year and shooting occurrences" ,echo =FALSE}
 shooting_occurrences_year %>%
@@ -198,4 +212,4 @@ The packages used for this paper were tidyverse, modelsummary, knitr, opendatato
 
 # References
 
-
+<div id="refs"></div>
