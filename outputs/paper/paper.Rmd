@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The problem of gun violence is a very serious issue in the modern world. Guns are capable of dealing large losses to life in very short periods of time. In order to deal with this problem, proper gun control laws are require and must be implemented in an effective manner to reduce the number of shooting occurrences in Toronto. Statistics and data about shooting occurrences can be used to measure how effective the current gun control laws are in reducing the amount of shooting occurrences. The data could also be used as an indicator of police effectiveness and the crime rate. 
 
-In this paper, the dataset was analyzed using bar plots, scatterplots and various summary statistics about the dataset such as the correlation between year and the number of shooting occurrences in said year. A mostly increasing trend in shooting occurrences was observed from 2014 to 2019 with a slight decrease in 2017. However, the data shows that the number of reported shooting occurrences in Toronto have been steadily increasing from 2014 to 2019. Furthermore, it appears that in each year the largest number of shooting occurrences have occurred in the geographical division D31 closely followed by D23 which might suggest that these areas have a higher rate of gun violence than the other geographical divisions.
+In this paper, the dataset was analyzed using bar plots, scatterplots and various summary statistics about the dataset such as the correlation between year and the number of shooting occurrences in said year. This analysis was performed in R, an open-source language for statistical programming. A mostly increasing trend in shooting occurrences was observed from 2014 to 2019 with a slight decrease in 2017. However, the data shows that the number of reported shooting occurrences in Toronto have been steadily increasing from 2014 to 2019. Furthermore, it appears that in each year the largest number of shooting occurrences have occurred in the geographical division D31 closely followed by D23 which might suggest that these areas have a higher rate of gun violence than the other geographical divisions.
 
 The results shown in the analysis dataset could imply that the effectiveness of gun control laws in Toronto has gone down since 2014 and that the crime rate has gone up, particularly in geographical divisions D31 and D23. It might mean that the Toronto government needs to seriously reexamine its laws in regards to guns and that policing must be more effective in the affected geographical divisions. The rest of this paper will explain the steps taken in analysing the dataset and the findings obtained in more detail.
 
@@ -54,7 +54,7 @@ While this dataset contains all reported shooting occurrences in Toronto, it doe
 
 The shooting occurrences dataset contains all shooting occurrences reported to the Toronto Police Service from 2014 to 2019 aggregated by division. There are 96 observations and 6 variables. These variables are _id, _index, OccurredYear, GeoDivision (Geographic division crime took place), Category (Shooting category) and Count_(Total number of shooting occurrences reported). The first two _id and _index are the same and were removed prior analysis. Category was also removed because all of the occurrences were the same category, Shooting occurrence, and thus it had no impact on the analysis of the dataset. Shooting occurrences in each year were aggregated by the geographical division they took place in. A sample view of the dataset can be viewed here.
 
-Extract of dataset (Table \@ref(tab:dataextract))
+Extract of dataset is shown in table 1 (Table \@ref(tab:dataextract))
 
 
 ```{r dataextract, echo=FALSE}
@@ -74,7 +74,7 @@ shooting_occurrences %>%
     linesep="")  ## Creating an extract of the dataset
 ```
 
-As you can see in Table \@ref(tab:dataextract) above, the dataset has three variables, the year the shooting was reported, the geographical division of the city the shooting took place in and the number of times it happened. 
+As you can see in Table 1 (Table \@ref(tab:dataextract)) above, the dataset has three variables, the year the shooting was reported, the geographical division of the city the shooting took place in and the number of times it happened. 
 
 
 ## Bar plots
@@ -82,10 +82,10 @@ As you can see in Table \@ref(tab:dataextract) above, the dataset has three vari
 
 The relationship between the current year and the number of shooting occurrences that took place in said year is a useful way to show the data as it can be interpreted as a measure of how effective gun control policies are in Toronto from year to year.
 
-Figure \@ref(fig:bar plot 1) shows the relationship between year and shooting occurrences. 
+Figure 1 (Figure \@ref(fig:bar plot 1)) shows the relationship between year and shooting occurrences. 
 
 
-```{r bar plot 1, fig.cap="Number of shooting occurrences from 2014 to 2019", echo=FALSE}
+```{r bar plot 1, fig.cap="Figure 1: Number of shooting occurrences from 2014 to 2019", echo=FALSE}
 shooting_barplot <- 
   shooting_occurrences %>% 
   mutate(Year = 
@@ -114,15 +114,15 @@ shooting_barplot %>%
 ## and y variable for the bar plot
 ```
 
-From Figure \@ref(fig:bar plot 1), there appears to be a mostly increasing trend in shooting occurrences over the years. It decreases from 2016 to 2017 but then increases again from 2017 to 2018 and maintains the trend till 2019. This increasing trend could be interpreted as a rise in gun violence over the course of 5 years in Toronto and the relaxation or decreased effectiveness of gun control laws.
+From figure 1 (Figure \@ref(fig:bar plot 1)), there appears to be a mostly increasing trend in shooting occurrences over the years. It decreases from 2016 to 2017 but then increases again from 2017 to 2018 and maintains the trend till 2019. This increasing trend could be interpreted as a rise in gun violence over the course of 5 years in Toronto and the relaxation or decreased effectiveness of gun control laws.
 
 
 Showing how shooting occurrences in each year were aggregated by the geographical division it took place in is also a useful thing to show as it shows us which division had the highest amount of reported shooting occurrences and could be interpreted as that division having the highest crime rate.
 
-Figure \@ref(fig:bar plot 2) shows shooting occurrences for each year agreggated by geographical division.
+Figure 2 (Figure \@ref(fig:bar plot 2)) shows shooting occurrences for each year aggregated by geographical division.
 
 
-```{r bar plot 2,fig.cap="Number of shooting occurrences from 2014 to 2019 agrregated by geographical division", echo=FALSE}
+```{r bar plot 2,fig.cap="Figure 2: Number of shooting occurrences from 2014 to 2019 agrregated by geographical division", echo=FALSE}
 shooting_barplot %>%  
   ggplot(mapping = aes(Year,Count_, fill=GeoDivision)) +
   geom_bar(stat='identity',position='dodge')+
@@ -131,12 +131,12 @@ shooting_barplot %>%
 ## split among the geographical divisions using fill
 ```
 
-From Figure \@ref(fig:bar plot 2), it can be observed that division D31 had the highest reported amount of shooting occurrences in each year from 2014 to 2019 closely followed by division D23 in each year. So, it could be interpreted as these divisons having the highest crime rate and gun violence in Toronto out of all of the divisions. 
+From figure 2 (Figure \@ref(fig:bar plot 2)), it can be observed that division D31 had the highest reported amount of shooting occurrences in each year from 2014 to 2019 closely followed by division D23 in each year. So, it could be interpreted as these divisons having the highest crime rate and gun violence in Toronto out of all of the divisions. 
 
 
 ## Summary statistics about the dataset
 
-Table \@ref(tab:datayear) shows the maximum number of shooting occurrences that occurred for each year
+Table 2 (Table \@ref(tab:datayear)) shows the maximum number of shooting occurrences that occurred for each year.
 
 
 ```{r datayear, echo=FALSE}
@@ -166,42 +166,46 @@ shooting_occurrences_year %>%
     caption = "Table 2: Dataset showing shooting count for each year from 2014 to 2019")
 ```
 
-From the Table \@ref(tab:datayear), it can be observed that shooting occurrences have been increasing from 2014 to 2019 with a slight decrease in 2017. From 2017, there have only been slight increases in reported shooting occurrences but there has been no decrease in shooting occurrences over the years shown in the dataset. This table reinforces the earlier theory that gun laws have become less effective since 2014 in Toronto and that more serious measures should have been implemented in these years.
+From the table 2 (Table \@ref(tab:datayear)), it can be observed that shooting occurrences have been increasing from 2014 to 2019 with a slight decrease in 2017. From 2017, there have only been slight increases in reported shooting occurrences but there has been no decrease in shooting occurrences over the years shown in the dataset. This table reinforces the earlier theory that gun laws have become less effective since 2014 in Toronto and that more serious measures should have been implemented in these years.
 
 
-Table \@ref(tab:dataskim) shows the summary statistics such as mean, minimum, maximum and median for shooting_occurrences.
+Table 3 (Table \@ref(tab:dataskim)) shows the summary statistics such as mean, minimum, maximum and median for shooting_occurrences.
 
 
 ```{r dataskim, echo =FALSE}
 shooting_occurrences_year$Shooting_count %>%
-  datasummary_skim()
+  datasummary_skim() %>%
+  knitr::kable(
+    caption = "Table 3: summary statistics for shooting_occurrences")
 ```
 
 
 
-Table \@ref(tab:datacorrelation) shows the correlation between year and shooting occurrences reported in that year. 
+Table 4 (Table \@ref(tab:datacorrelation) )shows the correlation between year and shooting occurrences reported in that year. 
 
 
 ```{r datacorrelation, echo=FALSE}
 shooting_occurrences_year %>%
-  datasummary_correlation()
+  datasummary_correlation() %>%
+  knitr::kable(
+    caption = "Table 4: correlation between year and shooting occurrences reported in that year")
 ```
 
-Table \@ref(tab:datacorrelation) shows that there is a very close correlation between year and reported shooting_occurrences in that year. 
+Table 3 (Table \@ref(tab:datacorrelation)) shows that there is a very close correlation between year and reported shooting_occurrences in that year. 
 
 
 ## Scatterplot about the dataset 
 
-Figure \@ref(fig:scatterplot) shows us the relationship between year and shooting occurrences in a scatterplot.
+Figure 3 (Figure \@ref(fig:scatterplot)) shows us the relationship between year and shooting occurrences in a scatterplot.
 
 
-```{r scatterplot,fig.cap="Relationship between year and shooting occurrences" ,echo =FALSE}
+```{r scatterplot,fig.cap="Figure 3: Relationship between year and shooting occurrences" ,echo =FALSE}
 shooting_occurrences_year %>%
   ggplot(mapping = aes(x = Year, y = Shooting_count)) +
   geom_point()
 ```
 
-Figure \@ref(fig:scatterplot) shows that there is something closely resembling a linear relationship between year and shooting occurrences in that year. 
+Figure 3 (Figure \@ref(fig:scatterplot)) shows that there is something closely resembling a linear relationship between year and shooting occurrences in that year. 
 
 ## Packages
 
