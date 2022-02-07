@@ -209,4 +209,3 @@ The packages used for this paper were tidyverse, modelsummary, knitr, opendatato
 
 # References
 
-<div id="refs"></div>
