@@ -3,8 +3,8 @@ title: "The increasing trend of shooting occurrences in Toronto"
 author: "Varun Vijay"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  pdf_document: default
-  bookdown::pdf_document2: default
+  pdf_document:
+   extra_dependencies: ["float"]
 abstract: Gun violence is a very serious problem in the modern world so statistics
   about shooting occurrences are an important factor to consider. This paper analyzed
   yearly data about shooting occurrences that were reported in Toronto in different
@@ -199,3 +199,32 @@ The packages used for this paper were tidyverse, modelsummary, knitr, opendatato
 
 # References
 
+[@citeR]
+
+[@citeopendatatoronto]
+
+[@thereferencecanbewhatever]
+
+[@citebookdown]
+
+[@citekableExtra]
+
+[@citehere]
+
+[@citetinytex]
+
+[@citeknitr]
+
+[@ggplot]
+
+[@citedplyr]
+
+[@citereadr]
+
+[@citemodelsummary]
+
+[@aboutportal]
+
+[@metaopendata]
+
+<div id="refs"></div>
