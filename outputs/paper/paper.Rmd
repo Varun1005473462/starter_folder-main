@@ -3,8 +3,8 @@ title: "The increasing trend of shooting occurrences in Toronto"
 author: "Varun Vijay"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  pdf_document:
-    extra_dependencies: ["float"]
+  pdf_document: default
+  bookdown::pdf_document2: default
 abstract: Gun violence is a very serious problem in the modern world so statistics
   about shooting occurrences are an important factor to consider. This paper analyzed
   yearly data about shooting occurrences that were reported in Toronto in different
@@ -169,22 +169,12 @@ shooting_occurrences_year %>%
 From the table 2 (Table \@ref(tab:datayear)), it can be observed that shooting occurrences have been increasing from 2014 to 2019 with a slight decrease in 2017. From 2017, there have only been slight increases in reported shooting occurrences but there has been no decrease in shooting occurrences over the years shown in the dataset. This table reinforces the earlier theory that gun laws have become less effective since 2014 in Toronto and that more serious measures should have been implemented in these years.
 
 
-Table 3 (Table \@ref(tab:dataskim)) shows the summary statistics such as mean, minimum, maximum and median for shooting_occurrences.
-
-
-```{r dataskim, echo =FALSE}
-shooting_occurrences_year$Shooting_count %>%
-  datasummary_skim(title ="Table 3: summary statistics for shooting_occurrences") 
-```
-
-
-
-Table 4 (Table \@ref(tab:datacorrelation) )shows the correlation between year and shooting occurrences reported in that year. 
+Table 3 (Table \@ref(tab:datacorrelation) )shows the correlation between year and shooting occurrences reported in that year. 
 
 
 ```{r datacorrelation, echo=FALSE}
 shooting_occurrences_year %>%
-  datasummary_correlation(title = "Table 4: correlation between year and shooting occurrences reported in that year") 
+  datasummary_correlation(title = "Table 3: correlation between year and shooting occurrences reported in that year") 
 ```
 
 Table 3 (Table \@ref(tab:datacorrelation)) shows that there is a very close correlation between year and reported shooting_occurrences in that year. 
